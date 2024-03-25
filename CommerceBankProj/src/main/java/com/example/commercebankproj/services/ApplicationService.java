@@ -22,4 +22,23 @@ public class ApplicationService {
         System.out.println("Permissions: " + userInfo.getPermissions());
         return applicationInfoRepository.save(applicationInfo);
     }
+
+
+    public ApplicationInfo findById(Long appId) {
+        return applicationInfoRepository.findById(appId).orElse(null);
+    }
+
+    public ApplicationInfo update(ApplicationInfo updatedApplicationInfo) {
+        Long appId = updatedApplicationInfo.getAppId();
+        ApplicationInfo existingApplicationInfo = applicationInfoRepository.findById(appId).orElse(null);
+
+        if (existingApplicationInfo != null) {
+            existingApplicationInfo.setApplicationId(updatedApplicationInfo.getApplicationId());
+            existingApplicationInfo.setDescription(updatedApplicationInfo.getDescription());
+
+            return applicationInfoRepository.save(existingApplicationInfo);
+        } else{
+            return null;
+        }
+    }
 }
