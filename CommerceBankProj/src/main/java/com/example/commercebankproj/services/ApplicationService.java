@@ -1,0 +1,25 @@
+package com.example.commercebankproj.services;
+
+import com.example.commercebankproj.domain.ApplicationInfo;
+import com.example.commercebankproj.domain.UserInfo;
+import com.example.commercebankproj.repositories.ApplicationInfoRepository;
+import com.example.commercebankproj.repositories.UserInfoRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@AllArgsConstructor
+public class ApplicationService {
+    private final UserInfoRepository userInfoRepository;
+    private final ApplicationInfoRepository applicationInfoRepository;
+
+    public ApplicationInfo create(ApplicationInfo applicationInfo, String username) {
+        UserInfo userInfo = userInfoRepository.findByUsername(username);
+        applicationInfo.setUserInfo(userInfo);
+
+        System.out.println("Username: " + userInfo.getUsername());
+        System.out.println("Password: " + userInfo.getPassword());
+        System.out.println("Permissions: " + userInfo.getPermissions());
+        return applicationInfoRepository.save(applicationInfo);
+    }
+}
