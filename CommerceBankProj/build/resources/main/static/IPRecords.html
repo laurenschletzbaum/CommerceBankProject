@@ -135,31 +135,29 @@
         <form class="logout-Form">
             <button type="button" class="logout-button" onclick="logout()">Logout</button>
         </form>
-    </div>
-    <div class="crud-container">
-        <form class="crud-Form">
-            <button type="button" id="addRecordBtn" class="add-button">Add New Record</button>
-            <button type="button" id="exportExcelBtn" class="edit-button">Export to Excel</button>
-        </form>
-    </div>
-    <div class="table-container" style="overflow:auto;">
-        <table id="ipRecords">
-            <thead>
-                <tr>
-                    <th>IP Address</th>
-                    <th>Application ID</th>
-                    <th>Server</th>
-                    <th>Port</th>
-                    <th>Date Modified</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
+
+        <div class="crud-container">
+            <form class="crud-Form">
+                <button type="button" id="addRecordBtn" class="add-button">Add New Record</button>
+                <button type="button" id="exportExcelBtn" class="edit-button">Export to Excel</button>
+            </form>
+        </div>
+        <div class="table-container" style="overflow:auto;">
+<table id="ipRecords">
+    <thead>
+        <tr>
+            <th>IP Address</th>
+            <th>Application ID</th>
+            <th>Server</th>
+            <th>Port</th>
+            <th>Date Modified</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
         <!-- Table content will be added dynamically -->
-            </tbody>
-        </table>
-    </div>
-</div>
+    </tbody>
+</table>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
 <script>
@@ -268,6 +266,6 @@
     }
 </script>
 
-</body>
+    </body>
 </html>
 
