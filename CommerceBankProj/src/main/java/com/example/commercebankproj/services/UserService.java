@@ -13,4 +13,9 @@ public class UserService {
     public UserInfo create(UserInfo user) {
         return userInfoRepository.save(user);
     }
+    @Transactional
+    public String delete(Long id){
+        userInfoRepository.deleteById(id);
+        return "ok";
+    }
 }
