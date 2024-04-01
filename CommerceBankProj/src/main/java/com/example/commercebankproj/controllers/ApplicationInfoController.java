@@ -48,4 +48,10 @@ public class ApplicationInfoController {
         }
 
     }
+    /** Delete Function **/
+    @CrossOrigin
+    @DeleteMapping("/applicationInfo/{appID}")
+    public ResponseEntity<?> deleteByID(@PathVariable Long appID){
+        return new ResponseEntity<>(applicationService.delete(appID), HttpStatus.OK);
+    }
 }
