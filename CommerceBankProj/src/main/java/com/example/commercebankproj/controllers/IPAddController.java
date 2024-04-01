@@ -33,6 +33,7 @@ public class IPAddController {
         }else {
             return ResponseEntity.notFound().build();
         }
+    }
 
     /** Update Function **/
     @CrossOrigin
