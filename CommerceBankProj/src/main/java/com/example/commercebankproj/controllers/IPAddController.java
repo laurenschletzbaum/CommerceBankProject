@@ -21,4 +21,28 @@ public class IPAddController {
         String applicationId = "MID";
         return new ResponseEntity<>(ipAddService.create(ipAddInfo, applicationId), HttpStatus.CREATED);
     }
+
+    /** Read Function **/
+    @CrossOrigin
+    @GetMapping("/ipAddresses/{ipId}")
+    public ResponseEntity<?> getById(@PathVariable Long ipId) {
+        IPAddInfo ipAddInfo = ipAddService.findById(ipId);
+
+        if (ipAddInfo != null) {
+            return new ResponseEntity<>(ipAddService.findById(ipId), HttpStatus.OK);
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+
+    /** Update Function **/
+    @CrossOrigin
+    @PutMapping("/ipAddresses/{ipId}")
+    public ResponseEntity<?> update(@PathVariable Long ipId, @RequestBody IPAddInfo updatedIPAddInfo) {
+        IPAddInfo ipAddInfo = ipAddService.update(updatedIPAddInfo);
+        if (ipAddInfo != null) {
+            return ResponseEntity.ok(ipAddInfo);
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
