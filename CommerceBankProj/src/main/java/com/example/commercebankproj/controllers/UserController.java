@@ -22,4 +22,9 @@ public class UserController {
 
         return new ResponseEntity<>(userService.create(userInfo), HttpStatus.CREATED);
     }
+    @CrossOrigin
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id){
+        return new ResponseEntity<>(userService.delete(id), HttpStatus.OK);
+    }
 }
