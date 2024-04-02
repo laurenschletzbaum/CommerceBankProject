@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Specific IP</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: whitesmoke;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container {
+        width: 80%;
+        margin: 0 auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    input[type="text"] {
+        width: 100%;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+    .back-button {
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .yellow-background {
+        background-color: yellow;
+        padding: 10px;
+    }
+    .button {
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+        margin-right: 10px;
+    }
+    .textbox-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .textbox {
+        flex: 1 0 calc(33.33% - 20px);
+        margin: 5px;
+    }
+    .button-container {
+        display: flex;
+        align-items: flex-start;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>IP Information</h2>
+    <table>
+        <tr>
+            <th>IP</th>
+            <th>Info 1</th>
+            <th>Info 2</th>
+            <th>Spec Info 1</th>
+            <th>Spec Info 2</th>
+        </tr>
+        <tr>
+            <td><input type="text" id="ip"></td>
+            <td><input type="text" id="info1"></td>
+            <td><input type="text" id="info2"></td>
+            <td><input type="text" id="specinfo1"></td>
+            <td><input type="text" id="specinfo2"></td>
+        </tr>
+    </table>
+    <a href="#" class="back-button">Back</a>
+    <div class="textbox-container">
+        <textarea rows="1" cols="20" class="textbox"></textarea>
+        <textarea rows="1" cols="20" class="textbox"></textarea>
+        <textarea rows="1" cols="20" class="textbox"></textarea>
+        <br>
+        <textarea rows="1" cols="20" class="textbox"></textarea>
+        <textarea rows="1" cols="20" class="textbox"></textarea>
+        <textarea rows="1" cols="20" class="textbox"></textarea>
+    </div>
+    <div class="button-container">
+        <button class="button" onclick="filterData()">Filter</button>
+        <button class="button" onclick="addData()">Add</button>
+        <button class="button" onclick="editData()">Edit</button>
+        <button class="button" onclick="deleteData()">Delete</button>
+    </div>
+</div>
+
+<script>
+    function filterData() {
+        var ip = document.getElementById("ip").value;
+        var info1 = document.getElementById("info1").value;
+        var info2 = document.getElementById("info2").value;
+        var specinfo1 = document.getElementById("specinfo1").value;
+        var specinfo2 = document.getElementById("specinfo2").value;
+        
+        // Implement filtering logic using the values of ip, info1, info2, specinfo1, and specinfo2
+        console.log("Filtering data...");
+        console.log("IP: " + ip);
+        console.log("Info 1: " + info1);
+        console.log("Info 2: " + info2);
+        console.log("Spec Info 1: " + specinfo1);
+        console.log("Spec Info 2: " + specinfo2);
+    }
+
+    function addData() {
+        var ip = document.getElementById("ip").value;
+        var info1 = document.getElementById("info1").value;
+        var info2 = document.getElementById("info2").value;
+        var specinfo1 = document.getElementById("specinfo1").value;
+        var specinfo2 = document.getElementById("specinfo2").value;
+
+        // Implement adding logic using the values of ip, info1, info2, specinfo1, and specinfo2
+        console.log("Adding data...");
+        console.log("IP: " + ip);
+        console.log("Info 1: " + info1);
+        console.log("Info 2: " + info2);
+        console.log("Spec Info 1: " + specinfo1);
+        console.log("Spec Info 2: " + specinfo2);
+    }
+
+    function editData() {
+        var ip = document.getElementById("ip").value;
+        var info1 = document.getElementById("info1").value;
+        var info2 = document.getElementById("info2").value;
+        var specinfo1 = document.getElementById("specinfo1").value;
+        var specinfo2 = document.getElementById("specinfo2").value;
+
+        // Implement editing logic using the values of ip, info1, info2, specinfo1, and specinfo2
+        console.log("Editing data...");
+        console.log("IP: " + ip);
+        console.log("Info 1: " + info1);
+        console.log("Info 2: " + info2);
+        console.log("Spec Info 1: " + specinfo1);
+        console.log("Spec Info 2: " + specinfo2);
+    }
+
+    function deleteData() {
+        var ip = document.getElementById("ip").value;
+        var info1 = document.getElementById("info1").value;
+        var info2 = document.getElementById("info2").value;
+        var specinfo1 = document.getElementById("specinfo1").value;
+        var specinfo2 = document.getElementById("specinfo2").value;
+
+        // Implement deleting logic using the values of ip, info1, info2, specinfo1, and specinfo2
+        console.log("Deleting data...");
+        console.log("IP: " + ip);
+        console.log("Info 1: " + info1);
+        console.log("Info 2: " + info2);
+        console.log("Spec Info 1: " + specinfo1);
+        console.log("Spec Info 2: " + specinfo2);
+    }
+</script>
+</body>
+</html>
+
