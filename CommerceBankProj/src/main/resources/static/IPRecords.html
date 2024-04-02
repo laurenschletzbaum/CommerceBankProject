@@ -163,7 +163,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const addRecordBtn = document.getElementById('addRecordBtn');
         const exportExcelBtn = document.getElementById('exportExcelBtn');
         const ipRecordsTable = document.getElementById('ipRecords').getElementsByTagName('tbody')[0];
@@ -175,7 +175,7 @@
             attachEventListeners();
         }
 
-        addRecordBtn.addEventListener('click', function() {
+        addRecordBtn.addEventListener('click', function () {
             const ip = prompt('Enter IP Address:');
             const appId = prompt('Enter Application ID:');
             const server = prompt('Enter Server:');
@@ -193,6 +193,7 @@
                     <td>
                         <button class="editBtn">Edit</button>
                         <button class="deleteBtn">Delete</button>
+                        <button class="selectBtn">Select</button>
                     </td>
                 `;
                 ipRecordsTable.appendChild(newRow);
@@ -205,7 +206,7 @@
             }
         });
 
-        exportExcelBtn.addEventListener('click', function() {
+        exportExcelBtn.addEventListener('click', function () {
             const wb = XLSX.utils.table_to_book(document.getElementById('ipRecords'));
             XLSX.writeFile(wb, 'ip_records.xlsx');
         });
@@ -213,20 +214,33 @@
         function attachEventListeners() {
             const editButtons = document.querySelectorAll('.editBtn');
             const deleteButtons = document.querySelectorAll('.deleteBtn');
+            const selectButtons = document.querySelectorAll('.selectBtn');
 
-            editButtons.forEach(function(btn) {
-                btn.addEventListener('click', function() {
+            editButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
                     const row = this.parentNode.parentNode;
                     editRecord(row);
                 });
             });
 
-            deleteButtons.forEach(function(btn) {
-                btn.addEventListener('click', function() {
+            deleteButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
                     const row = this.parentNode.parentNode;
                     deleteRecord(row);
                 });
             });
+
+            selectButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const row = this.parentNode.parentNode;
+                    selectRecord(row);
+                });
+            });
+        }
+
+        function selectRecord(row) {
+            window.location.href = "SpecificIP.html";
+            storeRow(row)
         }
 
         function editRecord(row) {
