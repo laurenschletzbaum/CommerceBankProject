@@ -6,6 +6,7 @@ import com.example.commercebankproj.repositories.ApplicationInfoRepository;
 import com.example.commercebankproj.repositories.UserInfoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor

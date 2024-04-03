@@ -4,6 +4,7 @@ import com.example.commercebankproj.domain.UserInfo;
 import com.example.commercebankproj.repositories.UserInfoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor

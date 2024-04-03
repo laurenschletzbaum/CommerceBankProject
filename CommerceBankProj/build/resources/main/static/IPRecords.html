@@ -135,33 +135,35 @@
         <form class="logout-Form">
             <button type="button" class="logout-button" onclick="logout()">Logout</button>
         </form>
-
-        <div class="crud-container">
-            <form class="crud-Form">
-                <button type="button" id="addRecordBtn" class="add-button">Add New Record</button>
-                <button type="button" id="exportExcelBtn" class="edit-button">Export to Excel</button>
-            </form>
-        </div>
-        <div class="table-container" style="overflow:auto;">
-<table id="ipRecords">
-    <thead>
-        <tr>
-            <th>IP Address</th>
-            <th>Application ID</th>
-            <th>Server</th>
-            <th>Port</th>
-            <th>Date Modified</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
+    </div>
+    <div class="crud-container">
+        <form class="crud-Form">
+            <button type="button" id="addRecordBtn" class="add-button">Add New Record</button>
+            <button type="button" id="exportExcelBtn" class="edit-button">Export to Excel</button>
+        </form>
+    </div>
+    <div class="table-container" style="overflow:auto;">
+        <table id="ipRecords">
+            <thead>
+                <tr>
+                    <th>IP Address</th>
+                    <th>Application ID</th>
+                    <th>Server</th>
+                    <th>Port</th>
+                    <th>Date Modified</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
         <!-- Table content will be added dynamically -->
-    </tbody>
-</table>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const addRecordBtn = document.getElementById('addRecordBtn');
         const exportExcelBtn = document.getElementById('exportExcelBtn');
         const ipRecordsTable = document.getElementById('ipRecords').getElementsByTagName('tbody')[0];
@@ -173,7 +175,7 @@
             attachEventListeners();
         }
 
-        addRecordBtn.addEventListener('click', function() {
+        addRecordBtn.addEventListener('click', function () {
             const ip = prompt('Enter IP Address:');
             const appId = prompt('Enter Application ID:');
             const server = prompt('Enter Server:');
@@ -191,6 +193,7 @@
                     <td>
                         <button class="editBtn">Edit</button>
                         <button class="deleteBtn">Delete</button>
+                        <button class="selectBtn">Select</button>
                     </td>
                 `;
                 ipRecordsTable.appendChild(newRow);
@@ -203,7 +206,7 @@
             }
         });
 
-        exportExcelBtn.addEventListener('click', function() {
+        exportExcelBtn.addEventListener('click', function () {
             const wb = XLSX.utils.table_to_book(document.getElementById('ipRecords'));
             XLSX.writeFile(wb, 'ip_records.xlsx');
         });
@@ -211,20 +214,33 @@
         function attachEventListeners() {
             const editButtons = document.querySelectorAll('.editBtn');
             const deleteButtons = document.querySelectorAll('.deleteBtn');
+            const selectButtons = document.querySelectorAll('.selectBtn');
 
-            editButtons.forEach(function(btn) {
-                btn.addEventListener('click', function() {
+            editButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
                     const row = this.parentNode.parentNode;
                     editRecord(row);
                 });
             });
 
-            deleteButtons.forEach(function(btn) {
-                btn.addEventListener('click', function() {
+            deleteButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
                     const row = this.parentNode.parentNode;
                     deleteRecord(row);
                 });
             });
+
+            selectButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const row = this.parentNode.parentNode;
+                    selectRecord(row);
+                });
+            });
+        }
+
+        function selectRecord(row) {
+            window.location.href = "SpecificIP.html";
+            storeRow(row)
         }
 
         function editRecord(row) {
@@ -266,6 +282,6 @@
     }
 </script>
 
-    </body>
+</body>
 </html>
 
