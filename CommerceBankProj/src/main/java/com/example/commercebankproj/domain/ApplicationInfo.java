@@ -18,6 +18,8 @@ public class ApplicationInfo {
     private Long appId;
     private String applicationId;
     private String description;
+    private String dateModified;
+    private String modifiedBy;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

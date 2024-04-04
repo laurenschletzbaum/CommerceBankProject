@@ -20,6 +20,8 @@ public class UserInfo {
     private String username;
     private String password;
     private String permissions;
+    private String dateModified;
+    private String modifiedBy;
 
     @OneToMany(mappedBy = "userInfo")
     @JsonIgnore
