@@ -31,6 +31,11 @@ public class IPAddController {
             return ResponseEntity.notFound().build();
         }
     }
+    @CrossOrigin
+    @GetMapping("/ipAddresses")
+    public ResponseEntity<?> getAllIPAddresses() {
+        return new ResponseEntity<>(ipAddService.getAllIPAddresses(), HttpStatus.OK);
+    }
 
     /** Update Function **/
     @CrossOrigin

@@ -7,6 +7,8 @@ import com.example.commercebankproj.repositories.IPAddInfoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class IPAddService {
@@ -33,6 +35,8 @@ public class IPAddService {
     public IPAddInfo findById(Long ipId) {
         return ipAddInfoRepository.findById(ipId).orElse(null);
     }
+
+    public List<IPAddInfo> getAllIPAddresses() { return ipAddInfoRepository.findAll(); }
 
     /** Update **/
     public IPAddInfo update(IPAddInfo updatedIpAddInfo) {
