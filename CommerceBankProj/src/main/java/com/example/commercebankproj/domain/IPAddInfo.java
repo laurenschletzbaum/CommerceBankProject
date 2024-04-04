@@ -17,8 +17,8 @@ public class IPAddInfo {
     private String sourceHost;
     private String destinationAddress;
     private String destinationHost;
-    private String status;
     private String port;
+    private String status;
     private String dateModified;
     private String modifiedBy;
 
