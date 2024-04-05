@@ -21,7 +21,7 @@ public class IPAddInfo {
     private String destinationHost;
     private int port;
     private String status;
-    private Date dateModified;
+    private String dateModified;
     private String modifiedBy;
 
     @ManyToOne

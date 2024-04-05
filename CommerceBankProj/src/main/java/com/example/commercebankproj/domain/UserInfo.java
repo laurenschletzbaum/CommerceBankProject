@@ -21,7 +21,7 @@ public class UserInfo {
     private String username;
     private String password;
     private String permissions;
-    private Date dateModified;
+    private String dateModified;
 
     @OneToMany(mappedBy = "userInfo")
     @JsonIgnore

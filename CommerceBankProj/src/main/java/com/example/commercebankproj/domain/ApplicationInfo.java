@@ -19,7 +19,7 @@ public class ApplicationInfo {
     private Long appId;
     private String applicationId;
     private String description;
-    private Date dateModified;
+    private String dateModified;
     private String modifiedBy;
 
     @ManyToOne
