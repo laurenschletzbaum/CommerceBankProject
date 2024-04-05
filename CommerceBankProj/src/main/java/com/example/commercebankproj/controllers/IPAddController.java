@@ -37,7 +37,7 @@ public class IPAddController {
     @GetMapping("/ipAddresses")
     public ResponseEntity<?> getAllIPAddresses() {
         List<IPAddInfo> ipAddInfoList = ipAddService.getAllIPAddresses();
-        return new ResponseEntity<>(ipAddService.getAllIPAddresses(), HttpStatus.OK);
+        return new ResponseEntity<>(ipAddInfoList, HttpStatus.OK);
     }
 
     /** Update Function **/
