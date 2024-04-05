@@ -19,9 +19,31 @@ public class UserController {
 
         return new ResponseEntity<>(userService.create(userInfo), HttpStatus.CREATED);
     }
+
+    //Read
+    @CrossOrigin
+    @GetMapping("/users/{id}")
+    public ResponseEntity<UserInfo> read(@PathVariable Long id) {
+        UserInfo userInfo = userService.findById(id);
+        return new ResponseEntity<>(userInfo, HttpStatus.OK);
+    }
+
+    //Update
+    @CrossOrigin
+    @PutMapping("/users/{id}")
+    public ResponseEntity<UserInfo> update(@PathVariable Long id, @RequestBody UserInfo UpdatedUserInfo) {
+        UserInfo updatedUserInfo = userService.update(UpdatedUserInfo);
+        if (updatedUserInfo != null) {
+            return ResponseEntity.ok(updatedUserInfo);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
     @CrossOrigin
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable Long id){
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
         return new ResponseEntity<>(userService.delete(id), HttpStatus.OK);
     }
 }
