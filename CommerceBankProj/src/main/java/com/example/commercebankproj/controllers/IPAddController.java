@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 public class IPAddController {
@@ -34,6 +36,7 @@ public class IPAddController {
     @CrossOrigin
     @GetMapping("/ipAddresses")
     public ResponseEntity<?> getAllIPAddresses() {
+        List<IPAddInfo> ipAddInfoList = ipAddService.getAllIPAddresses();
         return new ResponseEntity<>(ipAddService.getAllIPAddresses(), HttpStatus.OK);
     }
 
