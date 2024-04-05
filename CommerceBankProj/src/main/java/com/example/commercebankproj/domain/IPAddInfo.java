@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Entity
 @AllArgsConstructor
@@ -17,9 +19,9 @@ public class IPAddInfo {
     private String sourceHost;
     private String destinationAddress;
     private String destinationHost;
-    private String port;
+    private int port;
     private String status;
-    private String dateModified;
+    private Date dateModified;
     private String modifiedBy;
 
     @ManyToOne

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -18,7 +19,7 @@ public class ApplicationInfo {
     private Long appId;
     private String applicationId;
     private String description;
-    private String dateModified;
+    private Date dateModified;
     private String modifiedBy;
 
     @ManyToOne
