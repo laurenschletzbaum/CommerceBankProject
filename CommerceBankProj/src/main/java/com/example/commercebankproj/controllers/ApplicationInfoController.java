@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -21,7 +20,14 @@ public class ApplicationInfoController {
         String username = "admin";
         return new ResponseEntity<>(applicationService.create(applicationInfo, username), HttpStatus.CREATED);
     }
-    /** Read Function **/
+    /** Read Functions **/
+
+    @CrossOrigin
+    @GetMapping("/applicationInfo")
+    public ResponseEntity<?> getAllApplicationInfo() {
+        String username = "admin";
+        return new ResponseEntity<>(applicationService.getAllApplicationInfo(), HttpStatus.OK);
+    }
     @CrossOrigin
     @GetMapping("/applicationInfo/{appId}")
     public ResponseEntity<?> getById(@PathVariable Long appId) {

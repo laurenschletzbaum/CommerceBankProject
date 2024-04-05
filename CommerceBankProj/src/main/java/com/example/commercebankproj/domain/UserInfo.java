@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -20,10 +21,7 @@ public class UserInfo {
     private String username;
     private String password;
     private String permissions;
-    private String created_at;
-    private String created_by;
-    private String modified_at;
-    private String modified_by;
+    private String dateModified;
 
     @OneToMany(mappedBy = "userInfo")
     @JsonIgnore

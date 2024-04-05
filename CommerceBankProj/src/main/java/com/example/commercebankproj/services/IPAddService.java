@@ -7,6 +7,8 @@ import com.example.commercebankproj.repositories.IPAddInfoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class IPAddService {
@@ -18,8 +20,14 @@ public class IPAddService {
         ApplicationInfo applicationInfo = applicationInfoRepository.findByApplicationId(applicationId);
         ipAddInfo.setApplicationInfo(applicationInfo);
 
-        System.out.println("IP Address: " + ipAddInfo.getIpAddress());
+        System.out.println("Source IP Address: " + ipAddInfo.getSourceAddress());
+        System.out.println("Source Host: " + ipAddInfo.getSourceHost());
+        System.out.println("Destination Address: " + ipAddInfo.getDestinationAddress());
+        System.out.println("Destination Host: " + ipAddInfo.getDestinationHost());
+        System.out.println("Port: " + ipAddInfo.getPort());
         System.out.println("Status: " + ipAddInfo.getStatus());
+        System.out.println("Date Modified: " + ipAddInfo.getDateModified());
+        System.out.println("Modified By:" + ipAddInfo.getModifiedBy());
         return ipAddInfoRepository.save(ipAddInfo);
     }
 
@@ -28,14 +36,22 @@ public class IPAddService {
         return ipAddInfoRepository.findById(ipId).orElse(null);
     }
 
+    public List<IPAddInfo> getAllIPAddresses() { return ipAddInfoRepository.findAll(); }
+
     /** Update **/
     public IPAddInfo update(IPAddInfo updatedIpAddInfo) {
         Long ipId = updatedIpAddInfo.getIpId();
         IPAddInfo existingIPAddInfo = ipAddInfoRepository.findById(ipId).orElse(null);
 
         if (existingIPAddInfo != null) {
+            existingIPAddInfo.setSourceAddress(updatedIpAddInfo.getSourceAddress());
+            existingIPAddInfo.setSourceHost(updatedIpAddInfo.getSourceHost());
+            existingIPAddInfo.setDestinationAddress(updatedIpAddInfo.getDestinationAddress());
+            existingIPAddInfo.setDestinationHost(updatedIpAddInfo.getDestinationHost());
+            existingIPAddInfo.setPort(updatedIpAddInfo.getPort());
             existingIPAddInfo.setStatus(updatedIpAddInfo.getStatus());
-            existingIPAddInfo.setIpAddress(updatedIpAddInfo.getIpAddress());
+            existingIPAddInfo.setDateModified(updatedIpAddInfo.getDateModified());
+            existingIPAddInfo.setModifiedBy(updatedIpAddInfo.getModifiedBy());
             return ipAddInfoRepository.save(existingIPAddInfo);
         }else {
             return null;

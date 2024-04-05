@@ -8,12 +8,15 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class ApplicationService {
     private final UserInfoRepository userInfoRepository;
     private final ApplicationInfoRepository applicationInfoRepository;
 
+    /** Create **/
     public ApplicationInfo create(ApplicationInfo applicationInfo, String username) {
         UserInfo userInfo = userInfoRepository.findByUsername(username);
         applicationInfo.setUserInfo(userInfo);
@@ -24,11 +27,13 @@ public class ApplicationService {
         return applicationInfoRepository.save(applicationInfo);
     }
 
-
+    /** Read **/
+    public List<ApplicationInfo> getAllApplicationInfo() { return applicationInfoRepository.findAll(); }
     public ApplicationInfo findById(Long appId) {
         return applicationInfoRepository.findById(appId).orElse(null);
     }
 
+    /** Update **/
     public ApplicationInfo update(ApplicationInfo updatedApplicationInfo) {
         Long appId = updatedApplicationInfo.getAppId();
         ApplicationInfo existingApplicationInfo = applicationInfoRepository.findById(appId).orElse(null);
@@ -48,4 +53,6 @@ public class ApplicationService {
         userInfoRepository.deleteById(id);
         return "ok";
     }
+
+
 }
