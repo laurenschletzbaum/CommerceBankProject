@@ -36,7 +36,6 @@ public class UserService {
             existingUserInfo.setPassword(updatedUserInfo.getPassword());
             existingUserInfo.setPermissions(updatedUserInfo.getPermissions());
             existingUserInfo.setDateModified(updatedUserInfo.getDateModified());
-            existingUserInfo.setModifiedBy(updatedUserInfo.getModifiedBy());
             return userInfoRepository.save(existingUserInfo);
         }else {
             return null;
