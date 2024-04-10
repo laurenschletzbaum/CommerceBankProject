@@ -23,10 +23,7 @@ public class UserInfo {
     private String permissions;
     private String dateModified;
 
-    //Added user_apps variables
-    private int app_info_uid;
-    private String created_at;
-    private String modified_by;
+
 
     @OneToMany(mappedBy = "userInfo")
     @JsonIgnore
