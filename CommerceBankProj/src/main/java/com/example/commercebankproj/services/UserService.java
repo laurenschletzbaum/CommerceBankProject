@@ -1,6 +1,5 @@
 package com.example.commercebankproj.services;
 
-import com.example.commercebankproj.domain.IPAddInfo;
 import com.example.commercebankproj.domain.UserInfo;
 import com.example.commercebankproj.repositories.UserInfoRepository;
 import lombok.AllArgsConstructor;

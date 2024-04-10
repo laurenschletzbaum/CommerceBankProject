@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -27,5 +26,5 @@ public class ApplicationInfo {
     private UserInfo userInfo;
 
     @OneToMany(mappedBy = "applicationInfo")
-    private List<IPAddInfo> ipAddInfos = new ArrayList<>();
+    private List<ServerInfo> serverInfos = new ArrayList<>();
 }
