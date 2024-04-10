@@ -14,7 +14,7 @@ public class UserController {
     private final UserService userService;
 
     @CrossOrigin
-    @PostMapping("/users")
+    @PostMapping("/user")
     public ResponseEntity<?> save(@RequestBody UserInfo userInfo) {
 
         return new ResponseEntity<>(userService.create(userInfo), HttpStatus.CREATED);

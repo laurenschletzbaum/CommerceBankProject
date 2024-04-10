@@ -1,6 +1,7 @@
 package com.example.commercebankproj.controllers;
 
 import com.example.commercebankproj.domain.ApplicationInfo;
+import com.example.commercebankproj.domain.AssignAppUser;
 import com.example.commercebankproj.services.ApplicationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,9 +20,21 @@ public class ApplicationInfoController {
     @PostMapping("/applicationInfo")
     public ResponseEntity<?> save(@RequestBody ApplicationInfo applicationInfo) {
         String username = "admin";
-        return new ResponseEntity<>(applicationService.create(applicationInfo, username), HttpStatus.CREATED);
+        return new ResponseEntity<>(applicationService.creatApp(applicationInfo), HttpStatus.CREATED);
     }
     /** Read Functions **/
+
+
+    @CrossOrigin
+    @PostMapping("/userapp")
+    public ResponseEntity<?> assignAppToUser(@RequestBody AssignAppUser assignAppUser) {
+        String username = "admin";
+        return new ResponseEntity<>(applicationService.assignAppToUser(assignAppUser), HttpStatus.CREATED);
+    }
+    /** Read Functions **/
+
+
+
 
     @CrossOrigin
     @GetMapping("/applicationInfo")

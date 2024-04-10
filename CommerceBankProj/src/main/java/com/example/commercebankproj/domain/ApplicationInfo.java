@@ -18,12 +18,19 @@ public class ApplicationInfo {
     private Long appId;
     private String applicationId;
     private String description;
+    private String created_at;
+    private String created_by;
     private String dateModified;
     private String modifiedBy;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserInfo userInfo;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private UserInfo userInfo;
+
+    @OneToMany(mappedBy = "app_info_uid")
+    private List<User_App> userapp = new ArrayList();
+
+
 
     @OneToMany(mappedBy = "applicationInfo")
     private List<ServerInfo> serverInfos = new ArrayList<>();

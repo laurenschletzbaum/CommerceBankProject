@@ -21,11 +21,17 @@ public class UserInfo {
     private String username;
     private String password;
     private String permissions;
+    private String created_at;
+    private String created_by;
     private String dateModified;
+    private String modified_by;
 
 
+    @OneToMany(mappedBy = "user_uid")
+    private List<User_App> userapp = new ArrayList();
 
-    @OneToMany(mappedBy = "userInfo")
-    @JsonIgnore
-    private List<ApplicationInfo> applicationInfos = new ArrayList<>();
+
+//    @OneToMany(mappedBy = "userInfo")
+//    @JsonIgnore
+//    private List<ApplicationInfo> applicationInfos = new ArrayList<>();
 }
