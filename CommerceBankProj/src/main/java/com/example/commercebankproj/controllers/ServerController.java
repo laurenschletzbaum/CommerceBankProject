@@ -51,4 +51,12 @@ public class ServerController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    /** Delete Function **/
+    @CrossOrigin
+    @DeleteMapping("/ipAddresses/{ipId}")
+    public ResponseEntity<?> deleteById(@PathVariable Long ipId) {
+        return new ResponseEntity<>(serverService.delete(ipId), HttpStatus.OK);
+
+    }
 }

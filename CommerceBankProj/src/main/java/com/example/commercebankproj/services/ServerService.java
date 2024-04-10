@@ -59,4 +59,8 @@ public class ServerService {
     }
 
 
+    public String delete(Long ipId) {
+        serverRepository.deleteById(ipId);
+        return "ok";
+    }
 }
