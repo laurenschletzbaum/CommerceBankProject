@@ -42,6 +42,7 @@ public class ApplicationInfoController {
         String username = "admin";
         return new ResponseEntity<>(applicationService.getAllApplicationInfo(), HttpStatus.OK);
     }
+
     @CrossOrigin
     @GetMapping("/applicationInfo/{appId}")
     public ResponseEntity<?> getById(@PathVariable Long appId) {

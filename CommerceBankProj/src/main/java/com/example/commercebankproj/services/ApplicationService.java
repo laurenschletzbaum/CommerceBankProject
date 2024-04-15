@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -21,6 +22,10 @@ public class ApplicationService {
     private final User_App_Repository user_app_repository;
 
     public ApplicationInfo creatApp(ApplicationInfo applicationInfo){
+
+        applicationInfo.setCreated_at(new Timestamp(System.currentTimeMillis()).toString());
+        applicationInfo.setCreated_by("Admin");
+
 
         return applicationInfoRepository.save(applicationInfo);
     }

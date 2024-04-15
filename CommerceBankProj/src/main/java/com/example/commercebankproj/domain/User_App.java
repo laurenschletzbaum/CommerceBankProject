@@ -1,5 +1,6 @@
 package com.example.commercebankproj.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,11 +19,13 @@ public class User_App {
 
     @ManyToOne
     @JoinColumn(name = "appId")
+    @JsonIgnore
     private ApplicationInfo app_info_uid;
 
 
     @ManyToOne
     @JoinColumn(name = "id")
+    @JsonIgnore
     private UserInfo user_uid;
 
 
