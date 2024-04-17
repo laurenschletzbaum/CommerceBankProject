@@ -43,8 +43,8 @@ public class ApplicationService {
         User_App userapp = new User_App();
         userapp.setApp_info_uid(app);
         userapp.setUser_uid(user);
-        userapp.setCreated_at("04/10/2004");
-        userapp.setCreated_by("admin");
+        userapp.setCreated_at(new Timestamp(System.currentTimeMillis()).toString());
+        userapp.setCreated_by("Admin");
 
 
         return user_app_repository.save(userapp);
