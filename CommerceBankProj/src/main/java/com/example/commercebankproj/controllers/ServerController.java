@@ -17,8 +17,9 @@ public class ServerController {
     @CrossOrigin
     @PostMapping("/ipAddresses")
     public ResponseEntity<?> save(@RequestBody ServerInfo serverInfo) {
-        String applicationId = "MID";
-        return new ResponseEntity<>(serverService.create(serverInfo, applicationId), HttpStatus.CREATED);
+        Long appID = Long.valueOf(2);
+        System.out.println("Server Controller : create");
+        return new ResponseEntity<>(serverService.create(serverInfo, appID), HttpStatus.CREATED);
     }
 
     /** Read Function **/

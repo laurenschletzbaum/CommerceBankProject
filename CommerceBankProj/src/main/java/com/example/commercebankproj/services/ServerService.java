@@ -17,8 +17,9 @@ public class ServerService {
     private final ServerRepository serverRepository;
 
     /** Create **/
-    public ServerInfo create(ServerInfo serverInfo, String applicationId) {
-        ApplicationInfo applicationInfo = applicationInfoRepository.findByApplicationId(applicationId);
+    public ServerInfo create(ServerInfo serverInfo, Long appID) {
+
+        ApplicationInfo applicationInfo = applicationInfoRepository.findById(appID).orElse(null);
         serverInfo.setApplicationInfo(applicationInfo);
 
         System.out.println("Source IP Address: " + serverInfo.getSourceAddress());

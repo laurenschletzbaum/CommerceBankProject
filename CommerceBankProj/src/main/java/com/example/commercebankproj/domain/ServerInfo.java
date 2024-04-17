@@ -1,5 +1,6 @@
 package com.example.commercebankproj.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,5 +25,6 @@ public class ServerInfo {
 
     @ManyToOne
     @JoinColumn(name = "appId")
+    @JsonIgnore
     private ApplicationInfo applicationInfo;
 }
