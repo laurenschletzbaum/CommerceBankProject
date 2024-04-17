@@ -7,6 +7,7 @@ import com.example.commercebankproj.repositories.ServerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -26,8 +27,9 @@ public class ServerService {
         System.out.println("Destination Host: " + serverInfo.getDestinationHost());
         System.out.println("Port: " + serverInfo.getPort());
         System.out.println("Status: " + serverInfo.getStatus());
-        System.out.println("Date Modified: " + serverInfo.getDateModified());
         System.out.println("Modified By:" + serverInfo.getModifiedBy());
+
+        serverInfo.setDateModified(new Timestamp(System.currentTimeMillis()).toString());
         return serverRepository.save(serverInfo);
     }
 
