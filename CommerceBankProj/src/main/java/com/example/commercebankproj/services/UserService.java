@@ -6,13 +6,18 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+
 @Service
 @AllArgsConstructor
 public class UserService {
     private final UserInfoRepository userInfoRepository;
 
     public UserInfo create(UserInfo user) {
+        user.setCreated_at(new Timestamp(System.currentTimeMillis()).toString());
+        user.setCreated_by("Admin");
         return userInfoRepository.save(user);
+
     }
 
     @Transactional
