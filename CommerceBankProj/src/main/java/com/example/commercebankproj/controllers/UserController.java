@@ -25,7 +25,7 @@ public class UserController {
 
     //Read
     @CrossOrigin
-    @GetMapping("/ipAddresses")
+    @GetMapping("/users")
     public ResponseEntity<?> getAllUsers() {
         List<UserInfo> userInfoList = userService.getAllUsers();
         return new ResponseEntity<>(userInfoList, HttpStatus.OK);
