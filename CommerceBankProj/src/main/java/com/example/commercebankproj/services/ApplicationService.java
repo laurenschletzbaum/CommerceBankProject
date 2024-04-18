@@ -82,10 +82,8 @@ public class ApplicationService {
         }
     }
      /** delete function **/
-    @Transactional
-    public String delete(Long id){
-        userInfoRepository.deleteById(id);
-        return "ok";
+    public void deleteApplicationById(Long appId) {
+        applicationInfoRepository.deleteById(appId);
     }
 
 

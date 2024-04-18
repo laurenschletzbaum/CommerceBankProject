@@ -71,8 +71,13 @@ public class ApplicationInfoController {
     }
     /** Delete Function **/
     @CrossOrigin
-    @DeleteMapping("/applicationInfo/{appID}")
-    public ResponseEntity<?> deleteByID(@PathVariable Long appID){
-        return new ResponseEntity<>(applicationService.delete(appID), HttpStatus.OK);
+    @DeleteMapping("/applicationInfo/{appId}")
+    public ResponseEntity<?> deleteApplication(@PathVariable Long appId) {
+        try {
+            applicationService.deleteApplicationById(appId);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Application Deletion Failed");
+        }
     }
 }
