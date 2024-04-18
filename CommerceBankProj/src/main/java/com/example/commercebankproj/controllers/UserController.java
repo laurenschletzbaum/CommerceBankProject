@@ -1,5 +1,6 @@
 package com.example.commercebankproj.controllers;
 
+import com.example.commercebankproj.domain.ServerInfo;
 import com.example.commercebankproj.domain.UserInfo;
 import com.example.commercebankproj.services.UserService;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -22,10 +25,10 @@ public class UserController {
 
     //Read
     @CrossOrigin
-    @GetMapping("/users/{id}")
-    public ResponseEntity<UserInfo> read(@PathVariable Long id) {
-        UserInfo userInfo = userService.findById(id);
-        return new ResponseEntity<>(userInfo, HttpStatus.OK);
+    @GetMapping("/ipAddresses")
+    public ResponseEntity<?> getAllUsers() {
+        List<UserInfo> userInfoList = userService.getAllUsers();
+        return new ResponseEntity<>(userInfoList, HttpStatus.OK);
     }
 
     //Update

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -31,6 +32,8 @@ public class UserService {
         return userInfoRepository.findById(id).orElse(null);
     }
     //Update
+
+    public List<UserInfo> getAllUsers() { return userInfoRepository.findAll(); }
 
     public UserInfo update(UserInfo updatedUserInfo) {
         Long id = updatedUserInfo.getId();
