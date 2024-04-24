@@ -1,13 +1,11 @@
 package com.example.commercebankproj.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -27,8 +25,8 @@ public class UserInfo {
     private String modified_by;
 
 
-    @OneToMany(mappedBy = "user_uid")
-    private List<User_App> userapp = new ArrayList();
+    @OneToMany(mappedBy = "userUid")
+    private List<UserApp> userApp = new ArrayList<>();
 
 
 //    @OneToMany(mappedBy = "userInfo")

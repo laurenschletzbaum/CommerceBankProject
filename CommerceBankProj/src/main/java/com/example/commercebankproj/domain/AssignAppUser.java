@@ -7,6 +7,7 @@ import lombok.Data;
 public class AssignAppUser {
 
     private Long id;
+    private String applicationId;
     private Long appId;
 
 

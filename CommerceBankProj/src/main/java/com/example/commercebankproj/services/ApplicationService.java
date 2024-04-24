@@ -3,13 +3,12 @@ package com.example.commercebankproj.services;
 import com.example.commercebankproj.domain.ApplicationInfo;
 import com.example.commercebankproj.domain.AssignAppUser;
 import com.example.commercebankproj.domain.UserInfo;
-import com.example.commercebankproj.domain.User_App;
+import com.example.commercebankproj.domain.UserApp;
 import com.example.commercebankproj.repositories.ApplicationInfoRepository;
 import com.example.commercebankproj.repositories.UserInfoRepository;
-import com.example.commercebankproj.repositories.User_App_Repository;
+import com.example.commercebankproj.repositories.UserAppRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.List;
 public class ApplicationService {
     private final UserInfoRepository userInfoRepository;
     private final ApplicationInfoRepository applicationInfoRepository;
-    private final User_App_Repository user_app_repository;
+    private final UserAppRepository user_app_repository;
 
     public ApplicationInfo creatApp(ApplicationInfo applicationInfo){
 
@@ -30,19 +29,37 @@ public class ApplicationService {
         return applicationInfoRepository.save(applicationInfo);
     }
 
+    public Long findByApplicationId(String applicationId) {
+        ApplicationInfo applicationInfo = applicationInfoRepository.findByApplicationId(applicationId);
+        if (applicationInfo != null) {
+            return applicationInfo.getAppId();
+        } else {
+            return null;
+        }
+    }
+
+    public String getApplicationId(Long appId) {
+        ApplicationInfo applicationInfo = applicationInfoRepository.findById(appId).orElse(null);
+        if (applicationInfo != null) {
+            return applicationInfo.getApplicationId();
+        } else {
+            return null;
+        }
+    }
 
 
 
-    public User_App assignAppToUser(AssignAppUser assignAppUser){
+
+    public UserApp assignAppToUser(AssignAppUser assignAppUser){
 
 
         ApplicationInfo app = applicationInfoRepository.findById(assignAppUser.getAppId()).orElse(new ApplicationInfo());
         UserInfo user = userInfoRepository.findById(assignAppUser.getId()).orElse(new UserInfo());
 
 
-        User_App userapp = new User_App();
+        UserApp userapp = new UserApp();
         userapp.setApp_info_uid(app);
-        userapp.setUser_uid(user);
+        userapp.setUserUid(user);
         userapp.setCreated_at(new Timestamp(System.currentTimeMillis()).toString());
         userapp.setCreated_by("Admin");
 

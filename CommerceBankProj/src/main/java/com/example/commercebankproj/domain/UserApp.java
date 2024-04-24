@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class User_App {
+public class UserApp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //Added user_apps variables
@@ -26,7 +26,7 @@ public class User_App {
     @ManyToOne
     @JoinColumn(name = "id")
     @JsonIgnore
-    private UserInfo user_uid;
+    private UserInfo userUid;
 
 
 

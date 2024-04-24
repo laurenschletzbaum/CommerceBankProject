@@ -28,7 +28,7 @@ public class ApplicationInfo {
 //    private UserInfo userInfo;
 
     @OneToMany(mappedBy = "app_info_uid")
-    private List<User_App> userapp = new ArrayList();
+    private List<UserApp> userapp = new ArrayList();
 
 
 

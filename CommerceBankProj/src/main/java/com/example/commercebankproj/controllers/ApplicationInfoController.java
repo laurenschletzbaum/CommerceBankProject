@@ -25,12 +25,12 @@ public class ApplicationInfoController {
     /** Read Functions **/
 
 
-    @CrossOrigin
-    @PostMapping("/userapp")
-    public ResponseEntity<?> assignAppToUser(@RequestBody AssignAppUser assignAppUser) {
-        String username = "admin";
-        return new ResponseEntity<>(applicationService.assignAppToUser(assignAppUser), HttpStatus.CREATED);
-    }
+//    @CrossOrigin
+//    @PostMapping("/userapp")
+//    public ResponseEntity<?> assignAppToUser(@RequestBody AssignAppUser assignAppUser) {
+//        String username = "admin";
+//        return new ResponseEntity<>(applicationService.assignAppToUser(assignAppUser), HttpStatus.CREATED);
+//    }
     /** Read Functions **/
 
 
