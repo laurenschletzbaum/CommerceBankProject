@@ -25,8 +25,16 @@ public class UserInfo {
     private String modified_by;
 
 
-    @OneToMany(mappedBy = "userUid")
-    private List<UserApp> userApp = new ArrayList<>();
+    @OneToMany(mappedBy = "userInfo")
+    private List<UserApp> userApps = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserInfo userInfo;
+
+    @ManyToOne
+    @JoinColumn(name = "app_id")
+    private ApplicationInfo applicationInfo;
 
 
 //    @OneToMany(mappedBy = "userInfo")

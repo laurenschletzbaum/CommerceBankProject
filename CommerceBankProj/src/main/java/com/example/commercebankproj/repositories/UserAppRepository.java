@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface UserAppRepository extends JpaRepository<UserApp, Long> {
-    List<UserApp> findByUserUid(UserInfo userUid);
+    //List<UserApp> findByUserUid(UserInfo userUid);
 }

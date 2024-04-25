@@ -14,19 +14,19 @@ public class UserApp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //Added user_apps variables
-    private int user_apps_uid;
+    private Long id;
 
 
     @ManyToOne
     @JoinColumn(name = "appId")
     @JsonIgnore
-    private ApplicationInfo app_info_uid;
+    private ApplicationInfo applicationInfo;
 
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "userId")
     @JsonIgnore
-    private UserInfo userUid;
+    private UserInfo userInfo;
 
 
 

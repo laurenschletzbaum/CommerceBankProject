@@ -2,6 +2,7 @@ package com.example.commercebankproj.controllers;
 
 import com.example.commercebankproj.domain.ServerInfo;
 import com.example.commercebankproj.domain.UserInfo;
+import com.example.commercebankproj.services.ApplicationService;
 import com.example.commercebankproj.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,12 +16,27 @@ import java.util.List;
 @AllArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final ApplicationService applicationService;
 
     @CrossOrigin
     @PostMapping("/users")
     public ResponseEntity<?> save(@RequestBody UserInfo userInfo) {
 
         return new ResponseEntity<>(userService.create(userInfo), HttpStatus.CREATED);
+    }
+
+    @CrossOrigin
+    @PostMapping("/assignAppToUser")
+    public ResponseEntity<?> assignAppToUser(@RequestParam Long appId, @RequestParam Long userId) {
+        userService.assignAppToUser(appId, userId);
+        return ResponseEntity.ok().build();
+    }
+
+    @CrossOrigin
+    @GetMapping("/assignedUsers/{appId}")
+    public ResponseEntity<?> getAssignedUsers(@PathVariable Long appId) {
+        List<UserInfo> userInfoList = applicationService.getAssignedUsers(appId);
+        return new ResponseEntity<>(userInfoList, HttpStatus.OK);
     }
 
     //Read

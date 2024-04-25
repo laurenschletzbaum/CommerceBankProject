@@ -12,13 +12,15 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class ApplicationService {
     private final UserInfoRepository userInfoRepository;
     private final ApplicationInfoRepository applicationInfoRepository;
-    private final UserAppRepository user_app_repository;
+    private final UserAppRepository userAppRepository;
 
     public ApplicationInfo creatApp(ApplicationInfo applicationInfo){
 
@@ -29,13 +31,14 @@ public class ApplicationService {
         return applicationInfoRepository.save(applicationInfo);
     }
 
-    public Long findByApplicationId(String applicationId) {
+    public String findByApplicationId(String applicationId) {
         ApplicationInfo applicationInfo = applicationInfoRepository.findByApplicationId(applicationId);
-        if (applicationInfo != null) {
-            return applicationInfo.getAppId();
-        } else {
-            return null;
-        }
+        return applicationInfo != null ? applicationInfo.getApplicationId() : null;
+    }
+
+    public String getApplicationIdByApplicationid(String applicationId) {
+        ApplicationInfo applicationInfo = applicationInfoRepository.findByApplicationId(applicationId);
+        return applicationInfo != null ? applicationInfo.getApplicationId() : null;
     }
 
     public String getApplicationId(Long appId) {
@@ -50,21 +53,13 @@ public class ApplicationService {
 
 
 
-    public UserApp assignAppToUser(AssignAppUser assignAppUser){
+    public void assignUserToApp(Long userId, Long appId) {
+        ApplicationInfo applicationInfo = applicationInfoRepository.findById(appId).orElseThrow();
+        UserInfo userInfo = userInfoRepository.findById(userId).orElseThrow();
 
-
-        ApplicationInfo app = applicationInfoRepository.findById(assignAppUser.getAppId()).orElse(new ApplicationInfo());
-        UserInfo user = userInfoRepository.findById(assignAppUser.getId()).orElse(new UserInfo());
-
-
-        UserApp userapp = new UserApp();
-        userapp.setApp_info_uid(app);
-        userapp.setUserUid(user);
-        userapp.setCreated_at(new Timestamp(System.currentTimeMillis()).toString());
-        userapp.setCreated_by("Admin");
-
-
-        return user_app_repository.save(userapp);
+        UserApp userApp = new UserApp();
+        userApp.setApplicationInfo(applicationInfo);
+        userAppRepository.save(userApp);
     }
 
     /** Create **/
@@ -82,6 +77,13 @@ public class ApplicationService {
     public List<ApplicationInfo> getAllApplicationInfo() { return applicationInfoRepository.findAll(); }
     public ApplicationInfo findById(Long appId) {
         return applicationInfoRepository.findById(appId).orElse(null);
+    }
+
+    public List<UserInfo> getAssignedUsers(Long appId) {
+        ApplicationInfo applicationInfo = applicationInfoRepository.findById(appId).orElseThrow();
+        return applicationInfo.getUserApps().stream()
+                .map(UserApp::getUserInfo)
+                .collect(Collectors.toList());
     }
 
     /** Update **/

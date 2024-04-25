@@ -27,8 +27,8 @@ public class ApplicationInfo {
 //    @JoinColumn(name = "user_id")
 //    private UserInfo userInfo;
 
-    @OneToMany(mappedBy = "app_info_uid")
-    private List<UserApp> userapp = new ArrayList();
+    @OneToMany(mappedBy = "applicationInfo")
+    private List<UserApp> userApps = new ArrayList();
 
 
 

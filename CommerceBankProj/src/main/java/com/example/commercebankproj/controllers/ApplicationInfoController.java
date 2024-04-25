@@ -3,6 +3,9 @@ package com.example.commercebankproj.controllers;
 import com.example.commercebankproj.domain.ApplicationInfo;
 import com.example.commercebankproj.domain.AssignAppUser;
 import com.example.commercebankproj.services.ApplicationService;
+import com.example.commercebankproj.services.UserAppService;
+import com.example.commercebankproj.services.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 public class ApplicationInfoController {
     private final ApplicationService applicationService;
+    private final UserAppService userAppService;
+    private final UserService userService;
 
     /** Save Function **/
     @CrossOrigin
@@ -25,16 +30,13 @@ public class ApplicationInfoController {
     /** Read Functions **/
 
 
-//    @CrossOrigin
-//    @PostMapping("/userapp")
-//    public ResponseEntity<?> assignAppToUser(@RequestBody AssignAppUser assignAppUser) {
-//        String username = "admin";
-//        return new ResponseEntity<>(applicationService.assignAppToUser(assignAppUser), HttpStatus.CREATED);
-//    }
+    @CrossOrigin
+    @PostMapping("/assignUserToApp")
+    public ResponseEntity<?> assignUserToApp(@RequestBody Long userId, @RequestBody Long appId) {
+        applicationService.assignUserToApp(userId, appId);
+        return ResponseEntity.ok().build();
+    }
     /** Read Functions **/
-
-
-
 
     @CrossOrigin
     @GetMapping("/applicationInfo")
@@ -55,6 +57,13 @@ public class ApplicationInfoController {
         }
 
     }
+
+    @GetMapping("/assignedApps/{userId}")
+    public ResponseEntity<?> getAssignedApps(@PathVariable Long userId) {
+        List<ApplicationInfo> assignedApps = userService.getAssignedApps(userId);
+        return ResponseEntity.ok(assignedApps);
+    }
+
 
     /** Update Function **/
     @CrossOrigin
