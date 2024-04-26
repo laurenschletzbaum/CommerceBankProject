@@ -58,9 +58,9 @@ public class ApplicationInfoController {
 
     }
 
-    @GetMapping("/assignedApps/{userId}")
-    public ResponseEntity<?> getAssignedApps(@PathVariable Long userId) {
-        List<ApplicationInfo> assignedApps = userService.getAssignedApps(userId);
+    @GetMapping("/assignedApps/{id}")
+    public ResponseEntity<?> getAssignedApps(@PathVariable Long id) {
+        List<ApplicationInfo> assignedApps = userService.getAssignedApps(id);
         return ResponseEntity.ok(assignedApps);
     }
 

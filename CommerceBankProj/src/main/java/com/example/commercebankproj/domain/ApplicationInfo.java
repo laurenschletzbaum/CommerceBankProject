@@ -23,9 +23,9 @@ public class ApplicationInfo {
     private String dateModified;
     private String modifiedBy;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private UserInfo userInfo;
+    public ApplicationInfo(Long appId) {
+        this.appId = appId;
+    }
 
     @OneToMany(mappedBy = "applicationInfo")
     private List<UserApp> userApps = new ArrayList();

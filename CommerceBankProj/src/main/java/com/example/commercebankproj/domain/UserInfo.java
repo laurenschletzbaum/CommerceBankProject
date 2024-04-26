@@ -36,6 +36,20 @@ public class UserInfo {
     @JoinColumn(name = "app_id")
     private ApplicationInfo applicationInfo;
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_assigned_applications",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "application_id")
+    )
+    private List<ApplicationInfo> assignedApplications;
+    public List<ApplicationInfo> getAssignedApplications() {
+        return assignedApplications;
+    }
+
+    public void setAssignedApplications(List<ApplicationInfo> assignedApplications) {
+        this.assignedApplications = assignedApplications;
+    }
 
 //    @OneToMany(mappedBy = "userInfo")
 //    @JsonIgnore

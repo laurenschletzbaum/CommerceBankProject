@@ -1,5 +1,6 @@
 package com.example.commercebankproj.controllers;
 
+import com.example.commercebankproj.DTO.UserDTO;
 import com.example.commercebankproj.domain.ServerInfo;
 import com.example.commercebankproj.domain.UserInfo;
 import com.example.commercebankproj.services.ApplicationService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @AllArgsConstructor
 public class UserController {
@@ -47,6 +49,20 @@ public class UserController {
         return new ResponseEntity<>(userInfoList, HttpStatus.OK);
     }
 
+    @GetMapping("users/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+
+        if (id == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        UserDTO userDTO = userService.getUserById(id);
+        if (userDTO != null) {
+            return ResponseEntity.ok(userDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     //Update
     @CrossOrigin
     @PutMapping("/users/{id}")
@@ -57,6 +73,12 @@ public class UserController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PutMapping("/users/{id}/applications")
+    public ResponseEntity<?> updateAssignedApplications(@PathVariable Long id, @RequestBody List<Long> appIds) {
+        userService.updateAssignedApplications(id, appIds);
+        return ResponseEntity.ok().build();
     }
 
 

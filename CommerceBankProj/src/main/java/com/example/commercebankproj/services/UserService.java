@@ -1,5 +1,7 @@
 package com.example.commercebankproj.services;
 
+import com.example.commercebankproj.DTO.ApplicationDTO;
+import com.example.commercebankproj.DTO.UserDTO;
 import com.example.commercebankproj.domain.ApplicationInfo;
 import com.example.commercebankproj.domain.UserApp;
 import com.example.commercebankproj.domain.UserInfo;
@@ -52,20 +54,39 @@ public class UserService {
     }
     //Read
 
-    public UserInfo findById(Long id){
-        return userInfoRepository.findById(id).orElse(null);
+    public UserDTO findById(Long id) {
+        UserInfo userInfo = userInfoRepository.findById(id).orElse(null);
+        if (userInfo != null) {
+            return mapUserInfoToDTO(userInfo);
+        } else {
+            return null;
+        }
+    }
+
+    private UserDTO mapUserInfoToDTO(UserInfo userInfo) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(userInfo.getId());
+        userDTO.setUsername(userInfo.getUsername());
+        // Map other fields
+        return userDTO;
+    }
+
+    public UserDTO getUserById(Long id) {
+        UserInfo userInfo = userInfoRepository.findById(id).orElse(null);
+        if (userInfo != null) {
+            return mapUserInfoToDTO(userInfo);
+        }
+        return null;
     }
     //Update
 
     public List<UserInfo> getAllUsers() { return userInfoRepository.findAll(); }
 
-    public Long getIdByUsername(String username) {
-        UserInfo userInfo = userInfoRepository.findByUsername(username);
-        if (userInfo != null) {
-            return userInfo.getId();
-        } else {
-            return null;
-        }
+    public void updateAssignedApplications(Long id, List<Long> appIds) {
+        UserInfo userInfo = userInfoRepository.findById(id).orElseThrow();
+        List<ApplicationInfo> applicationInfos = applicationInfoRepository.findAllById(appIds);
+        userInfo.setAssignedApplications(applicationInfos);
+        userInfoRepository.save(userInfo);
     }
 
     public UserInfo update(UserInfo updatedUserInfo) {
